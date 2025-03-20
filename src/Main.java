@@ -1,51 +1,34 @@
-import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple Wishlist Service component that manages a user's wishlist.
- */
-class WishlistService {
-
-    // Attributes
-    private String wishlistId;
-    private List<String> wishlistItems;
-
-    // Constructor
-    public WishlistService(String wishlistId) {
-        this.wishlistId = wishlistId;
-        this.wishlistItems = new ArrayList<>();
-    }
-
-    /**
-     * A more important method: add an item to the wishlist.
-     *
-     * @param item the name of the item to add
-     */
-    public void addItem(String item) {
-        wishlistItems.add(item);
-        System.out.println("Added item: " + item + " to wishlist ID: " + wishlistId);
-    }
-
-    /**
-     * Display the current items in the wishlist.
-     */
-    public void showWishlist() {
-        System.out.println("Wishlist (" + wishlistId + ") contains:");
-        for (String item : wishlistItems) {
-            System.out.println(" - " + item);
-        }
-    }
-
-    // Example usage
+public class Main {
     public static void main(String[] args) {
-        // Create an instance of the WishlistService
-        WishlistService wishlistService = new WishlistService("W123");
+        String userId = "user1";
 
-        // Use the important method to add items
-        wishlistService.addItem("Smart TV");
-        wishlistService.addItem("Gaming Console");
+        WishlistService wishlist = new WishlistService("123");
 
-        // Display the wishlist contents
-        wishlistService.showWishlist();
+        wishlist.addItem("Book");
+        wishlist.addItem("Headphones");
+
+        System.out.println("\n Wishlist ");
+        wishlist.showWishlist();
+
+        NotificationRepository notificationRepo = new NotificationRepository();
+
+        Notification notification1 = new Notification("n1", userId, NotificationType.INVITATION,
+                "invitation");
+        Notification notification2 = new Notification("n2", userId, NotificationType.UPDATE,
+                "update 1");
+        Notification notification3 = new Notification("n3", userId, NotificationType.CONFIRMATION,
+                "confirmation1");
+
+        notificationRepo.saveNotification(notification1);
+        notificationRepo.saveNotification(notification2);
+        notificationRepo.saveNotification(notification3);
+
+        System.out.println("\nnotifications ");
+        List<Notification> userNotifications = notificationRepo.getNotificationsByUserId(userId);
+        for (Notification notification : userNotifications) {
+            System.out.println(notification.getType() + ": " + notification.getContent());
+        }
     }
 }
