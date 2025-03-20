@@ -1,15 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.ArrayList;
+import java.util.List;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+/**
+ * A simple Wishlist Service component that manages a user's wishlist.
+ */
+class WishlistService {
+
+    // Attributes
+    private String wishlistId;
+    private List<String> wishlistItems;
+
+    // Constructor
+    public WishlistService(String wishlistId) {
+        this.wishlistId = wishlistId;
+        this.wishlistItems = new ArrayList<>();
+    }
+
+    /**
+     * A more important method: add an item to the wishlist.
+     *
+     * @param item the name of the item to add
+     */
+    public void addItem(String item) {
+        wishlistItems.add(item);
+        System.out.println("Added item: " + item + " to wishlist ID: " + wishlistId);
+    }
+
+    /**
+     * Display the current items in the wishlist.
+     */
+    public void showWishlist() {
+        System.out.println("Wishlist (" + wishlistId + ") contains:");
+        for (String item : wishlistItems) {
+            System.out.println(" - " + item);
         }
+    }
+
+    // Example usage
+    public static void main(String[] args) {
+        // Create an instance of the WishlistService
+        WishlistService wishlistService = new WishlistService("W123");
+
+        // Use the important method to add items
+        wishlistService.addItem("Smart TV");
+        wishlistService.addItem("Gaming Console");
+
+        // Display the wishlist contents
+        wishlistService.showWishlist();
     }
 }
