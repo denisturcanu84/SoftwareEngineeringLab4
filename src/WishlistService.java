@@ -36,16 +36,4 @@ public class WishlistService {
         }
     }
 
-    // Example usage
-    public static void main(String[] args) {
-        // Create an instance of the WishlistService
-        WishlistService wishlistService = new WishlistService("W123");
-
-        // Use the important method to add items
-        wishlistService.addItem("Smart TV");
-        wishlistService.addItem("Gaming Console");
-
-        // Display the wishlist contents
-        wishlistService.showWishlist();
-    }
 }
