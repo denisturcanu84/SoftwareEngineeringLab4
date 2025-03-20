@@ -36,4 +36,21 @@ public class WishlistService {
         }
     }
 
+    /**
+     * Remove an item from the wishlist.
+     *
+     * @param item the name of the item to remove
+     * @return true if the item was removed, false if the item was not found
+     */
+    public boolean removeItem(String item) {
+        if (wishlistItems.contains(item)) {
+            wishlistItems.remove(item);
+            System.out.println("Removed item: " + item + " from wishlist ID: " + wishlistId);
+            return true;
+        } else {
+            System.out.println("Item: " + item + " not found in wishlist ID: " + wishlistId);
+            return false;
+        }
+    }
+
 }
